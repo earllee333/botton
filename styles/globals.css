@@ -9,9 +9,9 @@ body {
 
 
 
-* {
-  box-sizing: border-box;
-}
+  * {
+    box-sizing: border-box;
+  }
 .form-container{
   font-size:150%;
   margin:20px auto;
@@ -37,3 +37,22 @@ color:rgb(231, 203, 203)}
 #err-email-error-message{color:red;font-weight:bold;font-size: 20px;padding:2px;margin:5px;}
 #err-phone-error-message{color:red;font-weight:bold;font-size: 20px;padding:2px;margin:5px;}
 #err-number-error-message{color:red;font-weight:bold;font-size: 20px;padding:2px;margin:5px;}
+
+.notes-container{
+  text-align:center;
+  margin-top:20px;
+}
+.grid{display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-gap:10px;}
+.header a{text-decoration:none;color:rgb(43, 122, 226);font-size:20px;}  
+.notes-container h1{color:rgba(12, 12, 238, 0.692)}
+.extra :hover{color:rgb(230, 76, 76)}
+.extra button:hover{color:white}
+.extra button{border-radius: 20px;}
+.extra{padding:10px;}
+#time p{color:red}
+.time p{font-size:8px;}
+#icon {border:1px solid ;border-radius:20px;padding:10px;margin:5px;background:rgba(240, 236, 236, 0.308)}
+
+
