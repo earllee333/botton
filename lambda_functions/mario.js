@@ -1,4 +1,4 @@
-exports.handler=async (res,req)=>{
+exports.handler=async (req,res)=>{
     console.log('mario')
     const data = {name:'mario',age:25}
     const{query:{id},method} = req
