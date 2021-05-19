@@ -26,9 +26,3 @@ const Note = async({query:{id}}) => {
  
 export default Note;
 
-Note.getInitialProps = async ({query:{id}})=>{
-    const res = await fetch('/.netlify/functions/customer')
-    const {data}= await res.json();
-    return{note:data}
-}
-
