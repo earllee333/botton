@@ -28,6 +28,7 @@ const queryDatabase = async (db) => {
 
   return {
     statusCode: 200,
+    success:true,
     headers: {
       "Content-Type": "application/json",
     },
@@ -43,7 +44,7 @@ const pushToDatabase = async(db,data)=>{
     };
     if(MyData.name && MyData.email){
         await db.collection('notes').insertMany([data]);
-        return{statusCode:201,success:true};
+        return{statusCode:201};
 
     }   else{
         return{statusCode:422}
