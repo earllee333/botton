@@ -3,13 +3,13 @@ import{useRouter} from 'next/router';
 import{Confirm,Button,Loader} from 'semantic-ui-react';
 
 const Note = ({note}) => {
-    
+    console.log(note)
     
     
     return ( 
         
      <div>
-         {note}
+         <h1>hi</h1>
      </div>
     )
 }
@@ -17,7 +17,7 @@ const Note = ({note}) => {
 export default Note;
 
 Note.getInitialProps = async ({query:{id}})=>{
-    const res = await fetch(`/.netlify/functions/mario/${id}`)
+    const res = await fetch(`/.netlify/functions/${id}`)
     const {data}= await res.json();
     return{note:data}
 }
