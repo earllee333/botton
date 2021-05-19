@@ -20,7 +20,7 @@ const connectToDatabase = async (uri) => {
 };
 
 const queryDatabase = async (db) => {
-  const pokemon = await 
+  const data = await 
         db.collection("notes")
         .find({})
         .sort({ metacritic: -1 })
@@ -31,7 +31,7 @@ const queryDatabase = async (db) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(pokemon),
+    body: JSON.stringify(data),
   };
 };
 

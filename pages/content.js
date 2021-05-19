@@ -9,8 +9,9 @@ export default function cc(){
     useEffect(() => {
        fetch('/.netlify/functions/shisha')
          .then(res=>res.json())
-         .then(pokemon=>{
-             setNotes(pokemon.reverse())
+         .then(data=>{
+             data.reverse()
+             setNotes(data)
          })
     },[])
 
