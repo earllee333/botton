@@ -23,6 +23,7 @@ const queryDatabase = async (db,id) => {
   const data = await 
         db.collection("notes")
         .findById({id})
+        .toArray()
 
   return {
     statusCode: 200,
