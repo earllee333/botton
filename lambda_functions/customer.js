@@ -20,10 +20,9 @@ const connectToDatabase = async (uri) => {
 };
 
 const queryDatabase = async (db,id) => {
-    const{query:{id}}
-    const data = await 
+  const data = await 
         db.collection("notes")
-        .findById(id)
+        .findById({id})
 
   return {
     statusCode: 200,
@@ -33,31 +32,12 @@ const queryDatabase = async (db,id) => {
     body: JSON.stringify(data),
   };
 };
-const pushToDatabase = async(db,data)=>{
-    const MyData = {
-        name:data.name,
-        email:data.email,
-        phone:data.phone,
-        number:data.number,
-    };
-    if(MyData.name && MyData.email){
-        await db.collection('notes').insertMany([data]);
-        return{statusCode:201};
-
-    }   else{
-        return{statusCode:422}
-    }
-};
-module.exports.handler=async (event,context)=>{
+module.exports.handler=async (event,context,{query:{id}})=>{
   const db =await connectToDatabase(MONGODB_URI)
-    const id = event.path
-    console.log(id)
-  switch(event.httpMethod,method){
+  switch(event.httpMethod){
       case "GET":
-          return queryDatabase(db);
-      case "POST":
-          return pushToDatabase(db,JSON.parse(event.body))
-      default:
+          return queryDatabase(db,id);
+     default:
           return{statusCode:400}
   }
 }
