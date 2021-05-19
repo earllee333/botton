@@ -43,7 +43,7 @@ const pushToDatabase = async(db,data)=>{
     };
     if(MyData.name && MyData.email){
         await db.collection('notes').insertMany([data]);
-        return{statusCode:201};
+        return{statusCode:201,success:true};
 
     }   else{
         return{statusCode:422}
