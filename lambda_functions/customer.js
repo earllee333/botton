@@ -19,7 +19,7 @@ const connectToDatabase = async (uri) => {
   return cachedDb;
 };
 
-const queryDatabase = async ((db,id)) => {
+const queryDatabase = async (db,id) => {
     const{query:{id}}
     const data = await 
         db.collection("notes")

@@ -28,7 +28,6 @@ const queryDatabase = async (db) => {
 
   return {
     statusCode: 200,
-    success:true,
     headers: {
       "Content-Type": "application/json",
     },
