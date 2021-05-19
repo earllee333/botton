@@ -1,23 +1,24 @@
-import {useEffect,useState} from 'react'
-import Link from 'next/link'
-import {Button,Card} from'semantic-ui-react'
+import {useState,useEffect}from 'react'
+import{useRouter} from 'next/router';
+import{Confirm,Button,Loader} from 'semantic-ui-react';
 
-
-export default function cc({query:{id}}){
-    const[notes,setNotes]=useState(null)
+const Note = ({note}) => {
     
-    useEffect(() => {
-       fetch('/.netlify/functions/mario')
-         .then(res=>res.json())
-         .then(data=>{
-             data.reverse()
-             setNotes(data)
-         })
-    },[])
-
-    return(
-    <div>
-        {id}
-    </div>
+    
+    
+    return ( 
+        
+     <div>
+         {note}
+     </div>
     )
 }
+ 
+export default Note;
+
+Note.getInitialProps = async ({query:{id}})=>{
+    const res = await fetch(`/.netlify/functions/mario/${id}`)
+    const {data}= await res.json();
+    return{note:data}
+}
+
