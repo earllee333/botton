@@ -10,8 +10,7 @@ export default function cc(){
        fetch('/.netlify/functions/shisha')
          .then(res=>res.json())
          .then(pokemon=>{
-             pokemon.reserve()
-             setNotes(pokemon)
+             setNotes(pokemon.reserve())
          })
     },[])
 
