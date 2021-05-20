@@ -4,6 +4,8 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = '1992shisha';
 
 let cachedDb = null;
+const getId = (urlPath) => urlPath.match(/([^/]*)\/*$/)[0];
+
 
 const connectToDatabase = async (uri) => {
   // we can cache the access to our database to speed things up a bit
@@ -35,7 +37,8 @@ const queryDatabase = async (db,id) => {
 };
 module.exports.handler=async (event,context)=>{
   const db =await connectToDatabase(MONGODB_URI)
-  const id = event.pathParameters.id
+  const {path} = event
+  const id = getId(path)
   switch(event.httpMethod){
       case "GET":
           return queryDatabase(db,id);
