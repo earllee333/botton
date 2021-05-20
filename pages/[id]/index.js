@@ -18,7 +18,10 @@ export default function cc(){
     return(
     <div className="notes-container">
         <h1>Content</h1>
-        {notes.name}
+        {notes && 
+        <div>
+        {notes.name}    
+        </div>}
         
     </div>
     )
