@@ -2,9 +2,9 @@ import {useState,useEffect}from 'react'
 import{useRouter} from 'next/router';
 import{Confirm,Button,Loader} from 'semantic-ui-react';
 
-const Note = ({query:{id}}) => {
+const Note = () => {
     const [myData,setMyData] = useState(null)
-    useEffect(async()=>{
+    useEffect(async({query:{id}})=>{
         console.log('Effect call')
         const res = await fetch('/.netlify/functions/customer')
         const data = await res.json()
