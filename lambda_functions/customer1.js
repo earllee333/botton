@@ -22,7 +22,7 @@ const connectToDatabase = async (uri) => {
 const queryDatabase = async (db,id) => {
   const data = await 
         db.collection("notes")
-        .findById(id)
+        .findById({id})
         .toArray()
 
   return {
@@ -33,7 +33,7 @@ const queryDatabase = async (db,id) => {
     body: JSON.stringify(data),
   };
 };
-module.exports.handler=async (event,context)=>{
+module.exports.handler=async (req,res,event,context)=>{
   const db =await connectToDatabase(MONGODB_URI)
   const id = event.pathParameters.id
   switch(event.httpMethod){
