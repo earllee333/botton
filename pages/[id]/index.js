@@ -10,7 +10,6 @@ export default function cc(){
        fetch('/.netlify/functions/customer')
          .then(res=>res.json())
          .then(data=>{
-             data.reverse()
              setNotes(data)
          })
     },[])
