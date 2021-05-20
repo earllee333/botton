@@ -3,7 +3,7 @@ import{useRouter} from 'next/router';
 import{Confirm,Button,Loader} from 'semantic-ui-react';
 
 const Note = async({query:{id}}) => {
-    const [myData,seMyData] = useState(null)
+    const [myData,setMyData] = useState(null)
     useEffect(async()=>{
         console.log('Effect call')
         const res = await fetch('/.netlify/functions/customer')
