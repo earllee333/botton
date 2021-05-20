@@ -12,14 +12,13 @@ const Note = () => {
         console.log('Data= ',JSON.stringify(data))
     },[])
     
-    if (!myData.name){
+    if (!myData){
         return ( <div><h2>Lodaing</h2></div>)
     }
     return ( 
         
      <div>
-         {myData.name&&<div>{myData.name}</div>}
-         {!myData.name&& <div>Nothing</div>}
+         <h1>hi</h1>
      </div>
     )
 }
