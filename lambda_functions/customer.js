@@ -1,3 +1,4 @@
+import Note from '../models/Note'
 const MongoClient = require("mongodb").MongoClient;
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -34,16 +35,16 @@ const queryDatabase = async (ss,db,id) => {
     body: JSON.stringify(data),
   };
 };
-module.exports.handler=async (req,res,event,context)=>{
+module.exports.handler=async (event,context)=>{
   const db =await connectToDatabase(MONGODB_URI)
   const {path} = event
   const id = getId(path)
   console.log(id)
-  const ss = req.params.id
-  switch(event.httpMethod){
-      case "GET":
-          return queryDatabase(db,id,ss);
-     default:
-          return{statusCode:400}
+  const data = await Note.findById(id)
+  if(!data){
+    throwHttpNotFound(`Todo with ID: ${id} not found.`)
   }
+  return apisuccessResponse(200,data)
+  
+  
 }
