@@ -24,7 +24,7 @@ const connectToDatabase = async (uri) => {
 const queryDatabase = async (db,id) => {
   const data = await 
         db.collection("notes")
-        .findById({_id:"60a4be28a27d180009c5d72d"})
+        .findOne({_id:id})
         .toArray()
 
   return {

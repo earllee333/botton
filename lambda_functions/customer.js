@@ -4,6 +4,8 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = '1992shisha';
 
 let cachedDb = null;
+const getId = (urlPath) => urlPath.match(/([^/]*)\/*$/)[0];
+
 
 const connectToDatabase = async (uri) => {
   // we can cache the access to our database to speed things up a bit
@@ -19,11 +21,11 @@ const connectToDatabase = async (uri) => {
   return cachedDb;
 };
 
-const queryDatabase = async (db) => {
+const queryDatabase = async (db,id) => {
   const data = await 
         db.collection("notes")
-        .findById({_id:'"60a4be28a27d180009c5d72d"'})
-        .toArray();
+        .findOne({_id:id})
+        .toArray()
 
   return {
     statusCode: 200,
@@ -35,11 +37,12 @@ const queryDatabase = async (db) => {
 };
 module.exports.handler=async (event,context)=>{
   const db =await connectToDatabase(MONGODB_URI)
-
+  const {path} = event
+  const id = getId(path)
   switch(event.httpMethod){
       case "GET":
-          return queryDatabase(db);
-      default:
+          return queryDatabase(db,id);
+     default:
           return{statusCode:400}
   }
 }
