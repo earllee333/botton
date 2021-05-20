@@ -21,7 +21,7 @@ const connectToDatabase = async (uri) => {
 
 const queryDatabase = async (db) => {
   const data = await 
-        db.findById({id:'60a398769e1d9300090fdf63'})
+        db.findOne({id:'60a398769e1d9300090fdf63'})
   return {
     statusCode: 200,
     headers: {
