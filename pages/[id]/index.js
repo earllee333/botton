@@ -10,6 +10,7 @@ const Note = ({note}) => {
         
      <div>
          <h1>hi</h1>
+         {note.name}
      </div>
     )
 }
