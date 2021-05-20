@@ -24,7 +24,7 @@ const connectToDatabase = async (uri) => {
 };
 
 const queryDatabase = async (req,res,db) => {
-  id = req.params._id
+  id = req.params.id
   const o_id = new ObjectId(id)
   const data = await 
         db.collection("notes")
