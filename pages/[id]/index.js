@@ -2,7 +2,7 @@ import {useState,useEffect}from 'react'
 import{useRouter} from 'next/router';
 import{Confirm,Button,Loader} from 'semantic-ui-react';
 
-const Note = async({query:{id}}) => {
+const Note = ({query:{id}}) => {
     const [myData,setMyData] = useState(null)
     useEffect(async()=>{
         console.log('Effect call')
