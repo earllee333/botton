@@ -29,7 +29,7 @@ const o_id = new ObjectId(id)
         db.collection("notes")
         //.findOne({"_id":`ObjectId(${id})`})
         //.find({"_id" :ObjectId("5e07158c25ddae1f53b621fd")})
-        .find({_id:o_id})
+        .findOne({_id:o_id})
   return {
     statusCode: 200,
     headers: {
