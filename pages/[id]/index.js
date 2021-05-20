@@ -21,6 +21,7 @@ export default function cc(){
         <div>
         {notes.name}    
         </div>}
+        {!note &&<div>nothing...</div>}
         
     </div>
     )
