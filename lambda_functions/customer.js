@@ -21,10 +21,10 @@ const connectToDatabase = async (uri) => {
   return cachedDb;
 };
 
-const queryDatabase = async (req,res,db,id) => {
+const queryDatabase = async (ss,db,id) => {
   const data = await 
         db.collection("notes")
-        .findOne({},{_id:req.params.id})
+        .findOne({},{_id:ss})
 
   return {
     statusCode: 200,
@@ -34,14 +34,15 @@ const queryDatabase = async (req,res,db,id) => {
     body: JSON.stringify(data),
   };
 };
-module.exports.handler=async (event,context)=>{
+module.exports.handler=async (req,res,event,context)=>{
   const db =await connectToDatabase(MONGODB_URI)
   const {path} = event
   const id = getId(path)
   console.log(id)
+  const ss = req.params.id
   switch(event.httpMethod){
       case "GET":
-          return queryDatabase(db,id);
+          return queryDatabase(db,id,ss);
      default:
           return{statusCode:400}
   }
