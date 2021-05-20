@@ -7,8 +7,6 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = '1992shisha';
 
 let cachedDb = null;
-const getId = (urlPath) => urlPath.match(/([^/]*)\/*$/)[0];
-
 
 const connectToDatabase = async (uri) => {
   // we can cache the access to our database to speed things up a bit
