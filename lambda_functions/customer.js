@@ -23,8 +23,8 @@ const connectToDatabase = async (uri) => {
   return cachedDb;
 };
 
-const queryDatabase = async (db,id) => {
-  const o_id = new ObjectId(id)
+const queryDatabase = async (db,queryId) => {
+  const o_id = new ObjectId(queryId)
   const data = await 
         db.collection("notes")
         //.findOne({"_id":`ObjectId(${id})`})
@@ -40,10 +40,11 @@ const queryDatabase = async (db,id) => {
 };
 module.exports.handler=async (event,context)=>{
   const db =await connectToDatabase(MONGODB_URI)
-  const id  = event.pathParameters.id;
+  const query  = event.queryStringParameters;
+  const queryId = query.id || query._id
   switch(event.httpMethod){
       case "GET":
-          return queryDatabase(db,id);
+          return queryDatabase(db,queryId);
      default:
           return{statusCode:400}
   }
