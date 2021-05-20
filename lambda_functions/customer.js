@@ -23,7 +23,7 @@ const connectToDatabase = async (uri) => {
 };
 
 const queryDatabase = async (db,id) => {
-  const o_id = new ObjectId(queryId)
+  const o_id = new ObjectId(id)
   const data = await 
         db.collection("notes")
         //.findOne({"_id":`ObjectId(${id})`})
