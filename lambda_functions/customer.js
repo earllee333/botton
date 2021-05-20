@@ -5,7 +5,6 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const DB_NAME = '1992shisha';
 
 let cachedDb = null;
-const getId = (urlPath) => urlPath.match(/([^/]*)\/*$/)[0];
 
 
 const connectToDatabase = async (uri) => {
@@ -22,7 +21,7 @@ const connectToDatabase = async (uri) => {
   return cachedDb;
 };
 
-const queryDatabase = async (ss,db,id) => {
+const queryDatabase = async (ss,db) => {
   const data = await 
         db.collection("notes")
         .findOne({_id:ss})
@@ -35,16 +34,13 @@ const queryDatabase = async (ss,db,id) => {
     body: JSON.stringify(data),
   };
 };
-module.exports.handler=async (event,context)=>{
+module.exports.handler=async (req,res,event,context)=>{
   const db =await connectToDatabase(MONGODB_URI)
-  const {path} = event
-  const id = getId(path)
-  console.log(id)
-  const data = await Note.findById(id)
-  if(!data){
-    throwHttpNotFound(`Todo with ID: ${id} not found.`)
+  const ss = req.params.id
+  switch(event.httpMethod){
+      case "GET":
+          return queryDatabase(db,ss);
+     default:
+          return{statusCode:400}
   }
-  return apisuccessResponse(200,data)
-  
-  
 }
