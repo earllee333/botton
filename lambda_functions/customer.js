@@ -24,7 +24,13 @@ const connectToDatabase = async (uri) => {
 const queryDatabase = async (db,id) => {
   const data = await 
         db.collection("notes")
-        .find({_id:id})
+        .findById(id,function(err,docs){
+          if(err){
+            console.log(err)
+          }else{
+            console.log('Result :',docs)
+          }
+        })
 
   return {
     statusCode: 200,
