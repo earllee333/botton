@@ -24,13 +24,7 @@ const connectToDatabase = async (uri) => {
 const queryDatabase = async (db,id) => {
   const data = await 
         db.collection("notes")
-        .findOne({_id:id},function(err,docs){
-          if(err){
-            console.log(err)
-          }else{
-            console.log('Result :',docs)
-          }
-        })
+        .findOne({_id:id})
 
   return {
     statusCode: 200,
@@ -44,6 +38,7 @@ module.exports.handler=async (event,context)=>{
   const db =await connectToDatabase(MONGODB_URI)
   const {path} = event
   const id = getId(path)
+  console.log(id)
   switch(event.httpMethod){
       case "GET":
           return queryDatabase(db,id);

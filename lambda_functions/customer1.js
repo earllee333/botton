@@ -22,13 +22,8 @@ const connectToDatabase = async (uri) => {
 const queryDatabase = async (db) => {
   const data = await 
         db.collection("notes")
-        .findOne({id:'60a4be28a27d180009c5d72d'},function(err,docs){
-            if(err){
-              console.log(err)
-            }else{
-              console.log('function call :',docs)
-            }
-          })
+        .findOne({id:'60a4be28a27d180009c5d72d'})
+        .toArray()
   return {
     statusCode: 200,
     headers: {
