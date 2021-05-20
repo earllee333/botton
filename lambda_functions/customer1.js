@@ -24,8 +24,7 @@ const queryDatabase = async (db) => {
   const data = await 
         db.collection('notes')
         //.findOne({'name':'33Q'})
-        .find({"_id":"60a397f6fb93f300081a6b5c"})
-        //.findOne({id:""})
+        .find({"_id":ObjectId("60a397f6fb93f300081a6b5c")})
   return {
     statusCode: 200,
     headers: {
