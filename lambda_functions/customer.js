@@ -1,3 +1,5 @@
+const ObjectId = require('mongodb').ObjectId;
+
 const MongoClient = require("mongodb").MongoClient;
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -22,10 +24,12 @@ const connectToDatabase = async (uri) => {
 };
 
 const queryDatabase = async (db,id) => {
+const o_id = new ObjectId(id)
   const data = await 
         db.collection("notes")
-        .find({"_id":`ObjectId(${id})`})
-
+        //.findOne({"_id":`ObjectId(${id})`})
+        //.find({"_id" :ObjectId("5e07158c25ddae1f53b621fd")})
+        .find({_id:o_id})
   return {
     statusCode: 200,
     headers: {
