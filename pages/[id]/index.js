@@ -1,25 +1,25 @@
-import {useState,useEffect}from 'react'
-import{useRouter} from 'next/router';
-import{Confirm,Button,Loader} from 'semantic-ui-react';
+import {useEffect,useState} from 'react'
+import Link from 'next/link'
+import {Button,Card} from'semantic-ui-react'
 
-const Note = ({note}) => {
-    console.log(note)
+
+export default function cc(){
+    const[notes,setNotes]=useState(null)
     
-    
-    return ( 
+    useEffect(() => {
+       fetch('/.netlify/functions/customer')
+         .then(res=>res.json())
+         .then(data=>{
+             data.reverse()
+             setNotes(data)
+         })
+    },[])
+
+    return(
+    <div className="notes-container">
+        <h1>Content</h1>
+        {notes.name}
         
-     <div>
-         <h1>hi</h1>
-         {note.name}
-     </div>
+    </div>
     )
 }
- 
-export default Note;
-
-Note.getInitialProps = async ({query:{id}})=>{
-    const res = await fetch('/.netlify/functions/customer')
-    const {data}= await res.json();
-    return{note:data}
-}
-
