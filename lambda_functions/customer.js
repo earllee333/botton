@@ -35,9 +35,7 @@ const queryDatabase = async (db,id) => {
 };
 module.exports.handler=async (req,res,event,context)=>{
   const db =await connectToDatabase(MONGODB_URI)
-  const{
-    query:{id}
-}=req;
+  const id = event.pathParameters.id
   switch(event.httpMethod){
       case "GET":
           return queryDatabase(db,id);
