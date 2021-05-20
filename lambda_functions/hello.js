@@ -37,7 +37,7 @@ const handler = async (event, context) => {
   try {
     const Student = mongoose.models.Student
 
-    const result = await Student.findById({ _id: '5fe1c6c3a1b7fd69a71b7078' });
+    const result = await Student.findOne({ _id: '5fe1c6c3a1b7fd69a71b7078' });
 
     console.log('Result = ',result);
 
