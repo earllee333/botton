@@ -21,7 +21,7 @@ const connectToDatabase = async (uri) => {
   return cachedDb;
 };
 
-const queryDatabase = async (db,id) => {
+const queryDatabase = async (req,res,db,id) => {
   const data = await 
         db.collection("notes")
         .findOne({},{_id:req.params.id})
