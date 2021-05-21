@@ -1,28 +1,24 @@
 import {useEffect,useState} from 'react'
-import Link from 'next/link'
-import {Button,Card} from'semantic-ui-react'
 
 
-export default function cc(){
-    const[notes,setNotes]=useState(null)
-    
-    useEffect(() => {
-       fetch('/.netlify/functions/customer')
-         .then(res=>res.json())
-         .then(data=>{
-             setNotes(data)
-         })
-    },[])
+const notq = (id,data) => {
+    console.log('hi')
+    console.log(id)
+    console.log(data)
 
-    return(
-    <div className="notes-container">
-        <h1>Content</h1>
-        {notes && 
+    return ( 
         <div>
-        {notes.name}    
-        </div>}
-        {notes===null &&<div>nothing...</div>}
-        
-    </div>
-    )
+            s
+            {data.name}
+        </div>
+     );
+}
+ 
+export default notq;
+
+notq.getInitialProps = async({query:{id}})=>{
+
+    const res = await fetch(`.netlify/functions/customer?id=${id}`)
+    const {data} = res.json() 
+    return{props:{data,id}}
 }

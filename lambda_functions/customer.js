@@ -1,6 +1,5 @@
 const ObjectId = require('mongodb').ObjectId;
 const getId = (urlPath) => urlPath.match(/([^/]*)\/*$/)[0];
-
 const MongoClient = require("mongodb").MongoClient;
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -39,7 +38,7 @@ const queryDatabase = async (db,id) => {
 };
 module.exports.handler=async (event,context)=>{
   const db =await connectToDatabase(MONGODB_URI)
-  const id = event._id
+  const id = event.queryStringParameters.id
   console.log(id)
   switch(event.httpMethod){
       case "GET":

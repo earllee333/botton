@@ -1,25 +1,24 @@
-import {useState,useEffect}from 'react'
-import{useRouter} from 'next/router';
-import{Confirm,Button,Loader} from 'semantic-ui-react';
+import {useEffect,useState} from 'react'
 
-const Note = ({note}) => {
-    console.log(note)
-    
-    
+
+const notq = (id,data) => {
+    console.log('hi')
+    console.log(id)
+    console.log(data)
+
     return ( 
-        
-     <div>
-         <h1>hi</h1>
-         {note.name}
-     </div>
-    )
+        <div>
+            s
+            {data.name}
+        </div>
+     );
 }
  
-export default Note;
+export default notq;
 
-Note.getInitialProps = async ({query:{id}})=>{
-    const res = await fetch('/.netlify/functions/customer')
-    const {data}= await res.json();
-    return{note:data}
+notq.getInitialProps = async({query:{id}})=>{
+
+    const res = await fetch(`.netlify/functions/customer/${id}`)
+    const {data} = res.json() 
+    return{props:{data,id}}
 }
-
