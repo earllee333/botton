@@ -1,4 +1,5 @@
 const ObjectId = require('mongodb').ObjectId;
+const getId = (urlPath) => urlPath.match(/([^/]*)\/*$/)[0];
 
 const MongoClient = require("mongodb").MongoClient;
 
@@ -21,8 +22,7 @@ const connectToDatabase = async (uri) => {
   return cachedDb;
 };
 
-const queryDatabase = async (req,res,db) => {
-  id=req.user
+const queryDatabase = async (db,id) => {
   const o_id = new ObjectId(id)
   const data = await 
         db.collection("notes")
@@ -39,10 +39,16 @@ const queryDatabase = async (req,res,db) => {
 };
 module.exports.handler=async (event,context)=>{
   const db =await connectToDatabase(MONGODB_URI)
+  const id = event._id
   switch(event.httpMethod){
       case "GET":
-          return queryDatabase(db);
+          return queryDatabase(db,id);
      default:
           return{statusCode:400}
   }
+}
+module.exports.handler = async function(req,res){
+  const db = await connectToDatabase(MONGODB_URI)
+  const id = req.query.term;
+  const data = await db.collection('notes')
 }

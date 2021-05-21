@@ -1,27 +1,28 @@
-import {useState,useEffect}from 'react'
-import{useRouter} from 'next/router';
-import{Confirm,Button,Loader} from 'semantic-ui-react';
+import {useEffect,useState} from 'react'
+import Link from 'next/link'
+import {Button,Card} from'semantic-ui-react'
 
-const Note = () => {
-    const [myData,setMyData] = useState(null)
-    useEffect(async({query:{id}})=>{
-        console.log('Effect call')
-        const res = await fetch('/.netlify/functions/customer')
-        const data = await res.json()
-        setMyData(data)
-        console.log('Data= ',JSON.stringify(data))
-    },[])
+
+export default function cc(){
+    const[notes,setNotes]=useState(null)
     
-    if (!myData){
-        return ( <div><h2>Lodaing</h2></div>)
-    }
-    return ( 
+    useEffect(() => {
+       fetch('/.netlify/functions/customer')
+         .then(res=>res.json())
+         .then(data=>{
+             setNotes(data)
+         })
+    },[])
+
+    return(
+    <div className="notes-container">
+        <h1>Content</h1>
+        {notes && 
+        <div>
+        {notes.name}    
+        </div>}
+        {notes===null &&<div>nothing...</div>}
         
-     <div>
-         <h1>hi</h1>
-     </div>
+    </div>
     )
 }
- 
-export default Note;
-
