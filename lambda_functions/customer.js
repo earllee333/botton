@@ -48,8 +48,3 @@ module.exports.handler=async (event,context)=>{
           return{statusCode:400}
   }
 }
-module.exports.handler = async function(req,res){
-  const db = await connectToDatabase(MONGODB_URI)
-  const id = req.query.term;
-  const data = await db.collection('notes')
-}
