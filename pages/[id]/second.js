@@ -18,7 +18,7 @@ export default notq;
 
 notq.getInitialProps = async({query:{id}})=>{
 
-    const res = await fetch(`.netlify/functions/customer/${id}`)
-    const {data} = res.json() 
+    const res = await fetch(`.netlify/functions/customer?id=${id}`)
+    const {data} = res.json(data)
     return{props:{data,id}}
 }
