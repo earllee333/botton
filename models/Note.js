@@ -13,6 +13,8 @@ const NoteSchema = new mongoose.Schema({
     },
     number:{type:String,
     require:true},
+    date:{type:String,
+    require:true},
 },{
     timestamps:true
 })
