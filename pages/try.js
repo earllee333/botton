@@ -1,5 +1,5 @@
 import {useState} from'react'
-import DatePicker from 'react-datePicker'
+import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 const label = () => {
     const [name,setName]=useState('')
@@ -19,7 +19,7 @@ const label = () => {
                 onChange={date=>setSelectedDate(date)}
                 isClearable
                 dateFormat='yyyy/MM/dd'
-                filterDate={date=>date.getDay() != 1}
+                filterDate={date=>date.getDay() != 1 && date.getDay() != 6}
                 showYearDropdown
                 scrollableMonthYearDropdown
             ></DatePicker>
